@@ -10,7 +10,7 @@ const CompanyInfo = () => {
         <div className="flex flex-col md:items-start">
           <div className="flex items-center mb-2">
             <img
-              src="\src\assets\logo.png"
+              src="\assets\logo.png"
               alt="BridgeAi Logo"
               className="w-16 h-16 object-contain mr-3"
             />
@@ -29,10 +29,10 @@ const CompanyInfo = () => {
           <p className="mb-2 flex items-center gap-2">
             <span role="img" aria-label="email">📧</span>
             <a
-              href="mailto:contact@bridgeai.in"
+              href="mailto:bridgeai05@gmail.com"
               className="text-blue-700 hover:text-blue-900 font-medium transition"
             >
-              contact@bridgeai.in
+              bridgeai05@gmail.com
             </a>
           </p>
           <p className="mb-2 flex items-center gap-2">

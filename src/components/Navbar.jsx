@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { Menu, X } from 'lucide-react';
+import logo from '/assets/logo.png';
+
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -10,7 +12,7 @@ function Navbar() {
       <div className="max-w-7xl mx-auto flex items-center justify-between relative">
         {/* Logo & Brand */}
         <div className="flex items-center gap-2">
-          <img src="/src/assets/logo.png" alt="BridgeAi Logo" className="w-16 h-16" />
+<img src={logo} alt="BridgeAi Logo" className="w-16 h-16" />
           <span className="text-2xl font-extrabold text-[#8B3DFF] tracking-tight">
             BridgeAi
           </span>

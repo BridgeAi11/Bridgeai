@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 
 function Hero() {
   return (
-    <section className="w-full bg-white  pb-5 px-6 md:px-10 overflow-hidden">
+    <section className="w-full bg-white pb-5 px-6 md:px-10 overflow-hidden">
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-16 md:gap-20">
         
         {/* Text Content */}
@@ -25,20 +25,15 @@ function Hero() {
 
           {/* CTA */}
           <motion.button
-  className="mt-10 md:mt-12 inline-flex items-center justify-center px-8 py-3 rounded-lg bg-gradient-to-r from-purple-700 to-blue-500 text-white font-semibold text-base md:text-lg shadow-lg transition-all duration-300"
-  whileHover={{ scale: 1.08 }}
-  whileTap={{ scale: 0.95 }}
-  transition={{ type: 'spring', stiffness: 300 }}
->
-  Let’s get Connected!
-</motion.button>
-
-
+            className="mt-10 md:mt-12 inline-flex items-center justify-center px-8 py-3 rounded-lg bg-gradient-to-r from-purple-700 to-blue-500 text-white font-semibold text-base md:text-lg shadow-lg transition-all duration-300"
+            whileHover={{ scale: 1.08 }}
+            whileTap={{ scale: 0.95 }}
+            transition={{ type: 'spring', stiffness: 300 }}
+          >
+            Let’s get Connected!
+          </motion.button>
         </motion.div>
 
-      
-        
-        
         {/* Hero Image */}
         <motion.div
           className="md:w-1/2 flex justify-center"
@@ -47,10 +42,9 @@ function Hero() {
           transition={{ duration: 0.8, ease: 'easeOut', delay: 0.2 }}
         >
           <img
-            src="/src/assets/Hero.png"
+            src="/assets/Hero.png"
             alt="Illustration"
-           className="w-full max-w-[500px] sm:max-w-[550px] md:max-w-[600px] mt-0 md:mt-0"
-
+            className="w-full max-w-[500px] sm:max-w-[550px] md:max-w-[600px] mt-0 md:mt-0"
           />
         </motion.div>
       </div>
