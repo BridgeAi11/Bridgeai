@@ -29,10 +29,10 @@ const CompanyInfo = () => {
           <p className="mb-2 flex items-center gap-2">
             <span role="img" aria-label="email">📧</span>
             <a
-              href="mailto:bridgeai05@gmail.com"
+              href="mailto:kishore@bridgeai.in"
               className="text-blue-700 hover:text-blue-900 font-medium transition"
             >
-              bridgeai05@gmail.com
+              kishore@bridgeai.in
             </a>
           </p>
           <p className="mb-2 flex items-center gap-2">
@@ -56,7 +56,7 @@ const CompanyInfo = () => {
           <h2 className="text-xl font-semibold mb-3">Connect With Us</h2>
           <div className="flex space-x-5  text-2xl">
             <a
-              href="https://linkedin.com/company/bridgeai"
+              href="https://www.linkedin.com/company/bridgeai11/"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-blue-700 transition hover:scale-110"
