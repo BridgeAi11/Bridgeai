@@ -89,11 +89,14 @@ const CompanyInfo = () => {
             Let’s talk about how AI can transform your business.
           </p>
           <a
-            href="/contact"
-            className="inline-block bg-blue-600 hover:bg-blue-700 transition-all px-6 py-2.5 rounded-full text-white font-semibold shadow-md hover:shadow-lg"
-          >
-            Let’s Talk
-          </a>
+  href="https://wa.me/916374642981?text=Hi%20Kishorekumar%2C%20I%20would%20like%20to%20connect%20and%20learn%20more%20about%20your%20services."
+  target="_blank"
+  rel="noopener noreferrer"
+  className="inline-block bg-green-600 hover:bg-green-700 transition-all px-6 py-2.5 rounded-full text-white font-semibold shadow-md hover:shadow-lg"
+>
+  Let’s Talk
+</a>
+
         </div>
       </div>
 
