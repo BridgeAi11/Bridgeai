@@ -8,6 +8,36 @@ const Data = () => {
   }, []);
 
   const [showForm, setShowForm] = useState(false);
+  const [formSubmitted, setFormSubmitted] = useState(false);
+
+  const handleCloseModal = () => {
+    setShowForm(false);
+    setFormSubmitted(false);
+  };
+
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+
+    const form = e.target;
+    const formData = new FormData(form);
+
+    fetch("https://formspree.io/f/mrbkvqdv", {
+      method: "POST",
+      body: formData,
+      headers: {
+        Accept: "application/json",
+      },
+    })
+      .then((response) => {
+        if (response.ok) {
+          setFormSubmitted(true);
+          form.reset();
+        }
+      })
+      .catch((error) => {
+        console.error("Form submission error:", error);
+      });
+  };
 
   return (
     <>
@@ -60,56 +90,66 @@ const Data = () => {
       {/* Modal Form */}
       {showForm && (
         <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center px-4">
-          <div className="bg-white rounded-lg p-6 max-w-md w-full shadow-lg space-y-4">
-            <h2 className="text-xl font-bold text-gray-800 text-center">Share Your Business Need</h2>
-            <form
-              action="https://formspree.io/f/mrbkvqdv"
-              method="POST"
-              className="space-y-4"
-            >
-              <input
-                type="text"
-                name="name"
-                required
-                placeholder="Your Name"
-                className="w-full border border-gray-300 rounded-md px-4 py-2"
-              />
-              <input
-                type="text"
-                name="company"
-                required
-                placeholder="Company Name"
-                className="w-full border border-gray-300 rounded-md px-4 py-2"
-              />
-              <input
-                type="email"
-                name="email"
-                required
-                placeholder="Your Email"
-                className="w-full border border-gray-300 rounded-md px-4 py-2"
-              />
-              <textarea
-                name="problem"
-                required
-                rows="4"
-                placeholder="Briefly describe your problem or business use case"
-                className="w-full border border-gray-300 rounded-md px-4 py-2"
-              ></textarea>
+          <div className="bg-white rounded-xl p-6 max-w-md w-full shadow-xl relative">
+            {!formSubmitted ? (
+              <>
+                <h2 className="text-xl font-bold text-gray-800 text-center mb-4">Share Your Business Need</h2>
+                <form onSubmit={handleFormSubmit} className="space-y-4">
+                  <input
+                    type="text"
+                    name="name"
+                    required
+                    placeholder="Your Name"
+                    className="w-full border border-gray-300 rounded-md px-4 py-2"
+                  />
+                  <input
+                    type="text"
+                    name="company"
+                    required
+                    placeholder="Company Name"
+                    className="w-full border border-gray-300 rounded-md px-4 py-2"
+                  />
+                  <input
+                    type="email"
+                    name="email"
+                    required
+                    placeholder="Your Email"
+                    className="w-full border border-gray-300 rounded-md px-4 py-2"
+                  />
+                  <textarea
+                    name="problem"
+                    required
+                    rows="4"
+                    placeholder="Briefly describe your problem or business use case"
+                    className="w-full border border-gray-300 rounded-md px-4 py-2"
+                  ></textarea>
 
-              <button
-                type="submit"
-                className="w-full py-2 rounded-md bg-indigo-600 text-white font-medium hover:bg-indigo-700 transition"
-              >
-                Submit
-              </button>
-            </form>
-
-            <button
-              onClick={() => setShowForm(false)}
-              className="text-sm text-gray-500 hover:text-gray-800 underline block text-center mt-2"
-            >
-              Cancel
-            </button>
+                  <button
+                    type="submit"
+                    className="w-full py-2 rounded-md bg-indigo-600 text-white font-medium hover:bg-indigo-700 transition"
+                  >
+                    Submit
+                  </button>
+                </form>
+                <button
+                  onClick={handleCloseModal}
+                  className="text-sm text-gray-500 hover:text-gray-800 underline block text-center mt-4"
+                >
+                  Cancel
+                </button>
+              </>
+            ) : (
+              <div className="text-center space-y-4">
+                <h3 className="text-xl font-semibold text-green-600">✅ Thank you!</h3>
+                <p className="text-gray-700">Your submission has been received. We'll contact you soon.</p>
+                <button
+                  onClick={handleCloseModal}
+                  className="mt-4 px-6 py-2 bg-purple-600 text-white rounded-md hover:bg-purple-700 transition"
+                >
+                  Close
+                </button>
+              </div>
+            )}
           </div>
         </div>
       )}
