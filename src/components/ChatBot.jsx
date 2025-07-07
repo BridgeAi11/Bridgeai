@@ -2,6 +2,25 @@
 import React, { useState, useEffect, useRef } from "react";
 import { FaComments } from "react-icons/fa";
 
+// Helper: Clean and convert Gemini response text to HTML
+const formatText = (text) => {
+  if (typeof text !== "string") return "";
+
+  const cleaned = text.replace(/\*\*/g, ""); // remove bold markers
+  const lines = cleaned.split("\n");
+  const html = lines
+    .map((line) => {
+      if (line.startsWith("* ")) {
+        return `<li>${line.slice(2).trim()}</li>`;
+      }
+      return `<p>${line.trim()}</p>`;
+    })
+    .join("");
+
+  const hasBullets = lines.some((line) => line.startsWith("* "));
+  return hasBullets ? `<ul class="list-disc ml-5">${html}</ul>` : html;
+};
+
 const ChatBot = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [input, setInput] = useState("");
@@ -36,19 +55,7 @@ const ChatBot = () => {
         {
           sender: "bot",
           type: "text",
-          text: (
-            <span>
-              You can apply here 👉{" "}
-              <a
-                href="https://forms.gle/9YQgxcs5TZLMCM5y7"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-600 underline"
-              >
-                Internship Form
-              </a>
-            </span>
-          ),
+          text: `You can apply here 👉 <a href="https://forms.gle/9YQgxcs5TZLMCM5y7" target="_blank" class="text-blue-600 underline">Internship Form</a>`,
         },
       ]);
       setLoading(false);
@@ -61,14 +68,7 @@ const ChatBot = () => {
         {
           sender: "bot",
           type: "text",
-          text: (
-            <span>
-              Explore solutions 👉{" "}
-              <a href="#Data" className="text-blue-600 underline">
-                Explore Solutions
-              </a>
-            </span>
-          ),
+          text: `Explore solutions 👉 <a href="#Data" class="text-blue-600 underline">Explore Solutions</a>`,
         },
       ]);
       setLoading(false);
@@ -77,7 +77,7 @@ const ChatBot = () => {
 
     try {
       const response = await fetch(
-        `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${import.meta.env.VITE_GEMINI_API_KEY}`,
+        `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-pro-latest:generateContent?key=${import.meta.env.VITE_GEMINI_API_KEY}`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -87,9 +87,26 @@ const ChatBot = () => {
                 role: "user",
                 parts: [
                   {
-text: `You are a smart and friendly virtual assistant for BridgeAi, a company that provides AI-driven solutions, data analytics, and internship opportunities. A user just asked: "${messageText}". Respond clearly, professionally, and in a conversational tone. Be helpful and concise. If applicable, include relevant links, examples, or suggestions. Your goal is to guide the user and make their experience seamless and informative.`,
+                    text: `You are BridgeAi’s smart and friendly virtual assistant.
 
+BridgeAi offers:
+- AI-powered business solutions
+- Advanced data analytics
+- Process automation
+- Internship opportunities for students
+
+The user asked: "${messageText}"
+
+Respond in a short, clear, and friendly tone—like a helpful colleague. Avoid jargon unless necessary. When helpful:
+- Use bullet points,point are to be subheading or structured formatting
+- Provide ideas or suggestions
+- Keep it beginner-friendly and actionable
+
+If the user wants expert help, guide them to contact Kishorekumar KJ at 6374642981 , if only needed.
+
+Your goal is to assist users with accurate, meaningful, and crisp responses.`,
                   },
+
                 ],
               },
             ],
@@ -98,16 +115,33 @@ text: `You are a smart and friendly virtual assistant for BridgeAi, a company th
       );
 
       const data = await response.json();
-      const botText =
-        data?.candidates?.[0]?.content?.parts?.[0]?.text ||
-        "🤔 Hmm, I couldn't understand that. Could you please rephrase?";
+      console.log("Gemini raw response:", data);
 
-      setChat((prev) => [...prev, { sender: "bot", type: "text", text: botText }]);
-    } catch (error) {
-      console.error("Gemini error:", error);
+      if (!data?.candidates || data.candidates.length === 0) {
+        console.warn("⚠️ Gemini API did not return valid candidates.");
+      }
+
+      const botText = data?.candidates?.[0]?.content?.parts?.[0]?.text?.trim();
+
       setChat((prev) => [
         ...prev,
-        { sender: "bot", type: "text", text: "Oops! Something went wrong. 😢" },
+        {
+          sender: "bot",
+          type: "text",
+          text:
+            botText ||
+            "Sorry, I couldn't understand that. Could you try asking in a different way?",
+        },
+      ]);
+    } catch (error) {
+      console.error("Gemini API error:", error);
+      setChat((prev) => [
+        ...prev,
+        {
+          sender: "bot",
+          type: "text",
+          text: "Oops! Something went wrong. 😢",
+        },
       ]);
     }
 
@@ -119,11 +153,11 @@ text: `You are a smart and friendly virtual assistant for BridgeAi, a company th
   };
 
   useEffect(() => {
-    function handleClickOutside(event) {
+    const handleClickOutside = (event) => {
       if (wrapperRef.current && !wrapperRef.current.contains(event.target)) {
         setIsOpen(false);
       }
-    }
+    };
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
@@ -180,7 +214,7 @@ text: `You are a smart and friendly virtual assistant for BridgeAi, a company th
                     ))}
                   </div>
                 ) : (
-                  msg.text
+                  <div dangerouslySetInnerHTML={{ __html: formatText(msg.text) }} />
                 )}
               </div>
             ))}
