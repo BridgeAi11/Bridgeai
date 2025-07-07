@@ -4,7 +4,7 @@ import Services from './components/Services';
 import DataSolutionHero from './components/Data';
 import VisionMission from './components/VisionMission';
 import CompanyInfo from './components/CompanyInfo';
-
+import ChatBot from './components/ChatBot'; // 🆕
 
 import "./index.css";
 
@@ -15,8 +15,9 @@ function App() {
       <Hero />
       <Services />
       <DataSolutionHero />
-      <VisionMission/>
+      <VisionMission />
       <CompanyInfo />
+      <ChatBot /> {/* 🆕 Add ChatBot here */}
     </div>
   );
 }
