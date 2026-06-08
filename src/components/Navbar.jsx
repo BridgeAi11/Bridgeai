@@ -30,7 +30,7 @@ function Navbar() {
         {/* Desktop Contact Button */}
         <div className="hidden md:block">
           <a
-            href="https://wa.me/916374642981"
+            href="https://wa.me/919790540589"
             className="block bg-gradient-to-r from-purple-700 to-blue-500 text-white text-center py-2 px-4 rounded-lg hover:from-purple-800 hover:to-blue-600 transition"
           >
             Contact us
@@ -57,7 +57,7 @@ function Navbar() {
           {/* Proper spacing for Contact button */}
           <div className="pt-2">
             <a
-              href="https://wa.me/916374642981"
+              href="https://wa.me/919790540589"
               className="block text-center bg-gradient-to-r from-purple-700 to-blue-500 text-white py-2 px-4 rounded-md hover:from-purple-800 hover:to-blue-600 transition text-sm"
             >
               Contact us
