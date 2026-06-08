@@ -29,26 +29,22 @@ const CompanyInfo = () => {
           <p className="mb-2 flex items-center gap-2">
             <span role="img" aria-label="email">📧</span>
             <a
-              href="mailto:kishore@bridgeai.in"
+              href="mailto:bridgeai05@gmail.com"
               className="text-blue-700 hover:text-blue-900 font-medium transition"
             >
-              kishore@bridgeai.in
+              bridgeai05@gmail.com
             </a>
           </p>
           <p className="mb-2 flex items-center gap-2">
             <span role="img" aria-label="phone">📞</span>
-            <span className="font-medium">+91 6374642981</span>
+            <span className="font-medium">+91 9790540589</span>
           </p>
           <p className="mt-2 text-black leading-relaxed flex items-start gap-2">
             <span role="img" aria-label="location">🏢</span>
-            SNS Kalvi Nagar, Valiyampalayam,<br />
-            Coimbatore, Tamil Nadu 641035
+            Thabovanam Rd, Puliampatti,<br />
+            Tamil Nadu 638459
           </p>
-          <p className="mt-2 text-black leading-relaxed flex items-start gap-2">
-            <span role="img" aria-label="location">🏢</span>
-            1st C Cross Rd, Sundar Ram Shetty Nagar,
-            Bilekahalli, Bengaluru, Karnataka 560076
-          </p>
+         
         </div>
 
         {/* Social Media Links */}
@@ -64,7 +60,7 @@ const CompanyInfo = () => {
               <FaLinkedin />
             </a>
             <a
-              href="https://wa.me/916374642981"
+              href="https://wa.me/919790540589"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-green-600 transition hover:scale-110"
@@ -72,7 +68,7 @@ const CompanyInfo = () => {
               <FaWhatsapp />
             </a>
             <a
-              href="tel:+916374642981"
+              href="tel:+919790540589"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-blue-500 transition hover:scale-110"
@@ -89,7 +85,7 @@ const CompanyInfo = () => {
             Let’s talk about how AI can transform your business.
           </p>
           <a
-  href="https://wa.me/916374642981?text=Hi%20Kishorekumar%2C%20I%20would%20like%20to%20connect%20and%20learn%20more%20about%20your%20services."
+  href="https://wa.me/919790540589?text=Hi%2C%20I%20would%20like%20to%20connect%20and%20learn%20more%20about%20your%20services."
   target="_blank"
   rel="noopener noreferrer"
   className="inline-block bg-green-600 hover:bg-green-700 transition-all px-6 py-2.5 rounded-full text-white font-semibold shadow-md hover:shadow-lg"
@@ -100,10 +96,7 @@ const CompanyInfo = () => {
         </div>
       </div>
 
-      {/* Footer Bottom */}
-      <div className="text-center mt-12 text-black text-sm pt-6 border-t border-gray-300">
-        © {new Date().getFullYear()} <strong>BridgeAi Pvt Ltd.</strong> All rights reserved.
-      </div>
+      
     </footer>
   );
 };
