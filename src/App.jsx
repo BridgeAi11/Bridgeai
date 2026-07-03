@@ -1,24 +1,24 @@
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
-import Services from './components/Services';
-import DataSolutionHero from './components/Data';
-import VisionMission from './components/VisionMission';
-import CompanyInfo from './components/CompanyInfo';
-import ChatBot from './components/ChatBot'; // 🆕
-
-import "./index.css";
+import About from "./components/About";
+import WhyChoose from "./components/WhyChoose";
+import Service from "./components/Service";
+import Contact from "./components/Contact";
+import Footer from "./components/Footer";
+import ChatBot from "./components/ChatBot";
 
 function App() {
   return (
-    <div className="min-h-screen bg-white font-sans">
+    <>
       <Navbar />
       <Hero />
-      <Services />
-      <DataSolutionHero />
-      <VisionMission />
-      <CompanyInfo />
-      <ChatBot /> {/* 🆕 Add ChatBot here */}
-    </div>
+      <About />
+      <Service />
+      <WhyChoose />
+      <Contact />
+      <Footer />
+      <ChatBot />
+    </>
   );
 }
 
